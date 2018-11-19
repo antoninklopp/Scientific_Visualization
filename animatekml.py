@@ -7,9 +7,9 @@ kml = simplekml.Kml()
 currentdate = datetime.datetime.utcnow()
 
 def date_to_str(date):
-    return str(currentdate.year) + "-" + str(currentdate.month) + "-" + str(currentdate.day) + "-" + str(currentdate.hour)
+    return date.strftime("%Y-%m-%dT%H:%M:%S")
 
-for i, image in enumerate(glob.glob("images/*.png")):
+for i, image in enumerate(sorted(glob.glob("images/*.png"))):
     time = image.split("/")[-1][:-4]
     ground1 = kml.newgroundoverlay(name='Europe ' + str(i))
     ground1.icon.href = image
@@ -20,7 +20,7 @@ for i, image in enumerate(glob.glob("images/*.png")):
     ground1.latlonbox.west =  -12
     d = currentdate + datetime.timedelta(hours=6 * i)
     ground1.timespan.begin = date_to_str(d)
-    d_1 = d + datetime.timedelta(hours=5 + 6*i)
+    d_1 = currentdate + datetime.timedelta(hours=5 + 6*i)
     ground1.timespan.end =date_to_str(d_1)
 
 # ground2 = kml.newgroundoverlay(name='Blue Marble - Feb')
