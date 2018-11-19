@@ -6,6 +6,7 @@
 
 #### import the simple module from the paraview
 from paraview.simple import *
+import sys
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
@@ -25,8 +26,9 @@ renderView1.Background = [0.32, 0.34, 0.43]
 # setup the data processing pipelines
 # ----------------------------------------------------------------
 
+print("file loaded into paraview", sys.argv[1])
 # create a new 'NetCDF Reader'
-meteonc = NetCDFReader(FileName=['/user/2/klopptoa/Documents/3A/Scientific_Visualization/Projet/meteo.nc'])
+meteonc = NetCDFReader(FileName=[sys.argv[1]])
 meteonc.Dimensions = '(latitude, longitude)'
 meteonc.SphericalCoordinates = 0
 meteonc.ReplaceFillValueWithNan = 1
