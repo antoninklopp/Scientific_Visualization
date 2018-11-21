@@ -27,7 +27,7 @@ renderView1.Background = [0.32, 0.34, 0.43]
 # ----------------------------------------------------------------
 
 # create a new 'NetCDF Reader'
-meteonc = NetCDFReader(FileName=['/user/2/.base/klopptoa/home/Documents/3A/Scientific_Visualization/Projet/meteo.nc'])
+meteonc = NetCDFReader(FileName=[sys.argv[1]])
 meteonc.Dimensions = '(latitude, longitude)'
 meteonc.SphericalCoordinates = 0
 meteonc.ReplaceFillValueWithNan = 1
