@@ -14,7 +14,9 @@ Lancer ./main.sh argument
 --default (ou sans argument) : visualisation de la
 carte avec iso valurs, lignes de courant et temperature
 
---iso : visualisation des lignes iso valeurs de temperature"
+--iso : visualisation des lignes iso valeurs de temperature
+
+--temp : visualisation de la température seule"
     exit
     shift # past argument=value
     ;;
@@ -65,7 +67,11 @@ do
     case $i in
         --iso)
         pvpython process_data_iso.py output.nc $i > /dev/null 2>&1
-        shift 
+        shift
+        ;;
+        --temp)
+        pvpython process_data_temp.py output.nc $i > /dev/null 2>&1
+        shift
         ;;
         *)
         pvpython process_data.py output.nc $i > /dev/null 2>&1
