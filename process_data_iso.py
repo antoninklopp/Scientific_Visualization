@@ -12,14 +12,14 @@ paraview.simple._DisableFirstRenderCameraReset()
 
 # Create a new 'Render View'
 renderView1 = CreateView('RenderView')
-renderView1.ViewSize = [1052, 734]
+renderView1.ViewSize = [925, 566]
 renderView1.InteractionMode = '2D'
 renderView1.AxesGrid = 'GridAxes3DActor'
 renderView1.CenterOfRotation = [1.99999999998727, 46.45, 0.0]
 renderView1.StereoType = 0
-renderView1.CameraPosition = [2.1879070297733816, 46.28927189901906, 64.2005781312117]
-renderView1.CameraFocalPoint = [2.1879070297733816, 46.28927189901906, 0.0]
-renderView1.CameraParallelScale = 8.436667477197918
+renderView1.CameraPosition = [2.017283819121423, 46.31884724634661, 64.2005781312117]
+renderView1.CameraFocalPoint = [2.017283819121423, 46.31884724634661, 0.0]
+renderView1.CameraParallelScale = 8.656775699241452
 
 # ----------------------------------------------------------------
 # setup the data processing pipelines

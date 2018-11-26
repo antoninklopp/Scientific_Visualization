@@ -18,7 +18,6 @@ carte avec iso valurs, lignes de courant et temperature
 
 --temp : visualisation de la température seule"
     exit
-    shift # past argument=value
     ;;
     *)
           # unknown option
@@ -62,19 +61,20 @@ do
     ./wgrib2 $NOM_FICHIER -netcdf output.nc > /dev/null 2>&1
 
     # Process avec paraview
-    for i in "$@"
+    for j in "$@"
     do
-    case $i in
+    case $j in
         --iso)
         pvpython process_data_iso.py output.nc $i > /dev/null 2>&1
-        shift
+        break
         ;;
         --temp)
         pvpython process_data_temp.py output.nc $i > /dev/null 2>&1
-        shift
+        break
         ;;
         *)
         pvpython process_data.py output.nc $i > /dev/null 2>&1
+        break
         ;;
     esac
     done
