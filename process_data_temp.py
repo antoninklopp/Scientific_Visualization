@@ -102,15 +102,6 @@ meteoncDisplay.SetScalarBarVisibility(renderView1, True)
 
 # setup the color legend parameters for each legend in this view
 
-# get color legend/bar for tMP2mabovegroundLUT in view renderView1
-tMP2mabovegroundLUTColorBar = GetScalarBar(tMP2mabovegroundLUT, renderView1)
-tMP2mabovegroundLUTColorBar.Position = [0.893691215616681, 0.561367239101718]
-tMP2mabovegroundLUTColorBar.Position2 = [0.120000000000001, 0.43]
-tMP2mabovegroundLUTColorBar.Title = 'TMP_2maboveground'
-tMP2mabovegroundLUTColorBar.ComponentTitle = ''
-tMP2mabovegroundLUTColorBar.TitleColor = [0.0, 0.0, 0.0]
-tMP2mabovegroundLUTColorBar.LabelColor = [0.0, 0.0, 0.0]
-
 output = "images/" + sys.argv[2] + ".png"
 print("fichier sortie", output)
 WriteImage(output)
