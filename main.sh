@@ -35,7 +35,7 @@ do
     rm *.nc > /dev/null 2>&1
 
     echo "Téléchargement carte $i"
-    python3 RequeteArome.py $((($i-1)*6 - 5)) $1 > /dev/null 2>&1 # intervalle de 6 heures entre chaque données.
+    python3 RequeteArome.py $((($i-1)*6 - 5)) $1 # intervalle de 6 heures entre chaque données.
 
     NOM_FICHIER="$(ls *.grib2 | head -n1)" > /dev/null 2>&1
 
