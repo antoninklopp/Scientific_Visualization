@@ -17,10 +17,10 @@ renderView1.InteractionMode = '2D'
 renderView1.AxesGrid = 'GridAxes3DActor'
 renderView1.CenterOfRotation = [1.99999999998727, 46.45, 0.0]
 renderView1.StereoType = 0
-renderView1.CameraPosition = [1.44540518280946, 45.2092844699121, 64.2005781312117]
-renderView1.CameraFocalPoint = [1.44540518280946, 45.2092844699121, 0.0]
-renderView1.CameraParallelScale = 11.3491785581244
-renderView1.Background = [0.32, 0.34, 0.43]
+renderView1.CameraPosition = [3.687888213039155, 46.38636377692552, 64.2005781312117]
+renderView1.CameraFocalPoint = [3.687888213039155, 46.38636377692552, 0.0]
+renderView1.CameraParallelScale = 11.28189123070137
+renderView1.Background = [1.0, 1.0, 1.0]
 
 # ----------------------------------------------------------------
 # setup the data processing pipelines
@@ -44,21 +44,21 @@ glyph1.Vectors = ['POINTS', 'Result']
 glyph1.ScaleFactor = 0.3
 glyph1.GlyphTransform = 'Transform2'
 
+# create a new 'Contour'
+contour1 = Contour(Input=calculator1)
+contour1.ContourBy = ['POINTS', 'TMP_2maboveground']
+contour1.Isosurfaces = [285.0]
+contour1.PointMergeMethod = 'Uniform Binning'
+
 # create a new 'Stream Tracer'
 streamTracer1 = StreamTracer(Input=calculator1,
     SeedType='High Resolution Line Source')
 streamTracer1.Vectors = ['POINTS', 'Result']
-streamTracer1.MaximumStreamlineLength = 27.999999999974534
+streamTracer1.MaximumStreamlineLength = 27.9999999999745
 
 # init the 'High Resolution Line Source' selected for 'SeedType'
-streamTracer1.SeedType.Point1 = [-5.1425807656715286, 38.21868149180743, 0.0]
-streamTracer1.SeedType.Point2 = [5.908514052512984, 55.4898351864761, 0.0]
-
-# create a new 'Contour'
-contour1 = Contour(Input=calculator1)
-contour1.ContourBy = ['POINTS', 'RH_2maboveground']
-contour1.Isosurfaces = [59.4647378921509]
-contour1.PointMergeMethod = 'Uniform Binning'
+streamTracer1.SeedType.Point1 = [-5.14258076567153, 38.2186814918074, 0.0]
+streamTracer1.SeedType.Point2 = [5.90851405251298, 55.4898351864761, 0.0]
 
 # ----------------------------------------------------------------
 # setup color maps and opacity mapes used in the visualization
@@ -67,41 +67,44 @@ contour1.PointMergeMethod = 'Uniform Binning'
 
 # get color transfer function/color map for 'RH2maboveground'
 rH2mabovegroundLUT = GetColorTransferFunction('RH2maboveground')
-rH2mabovegroundLUT.RGBPoints = [17.933488845825195, 0.231373, 0.298039, 0.752941, 59.46473789215089, 0.865003, 0.865003, 0.865003, 100.995986938477, 0.705882, 0.0156863, 0.14902]
+rH2mabovegroundLUT.RGBPoints = [17.9334888458252, 0.231373, 0.298039, 0.752941, 59.4647378921509, 0.865003, 0.865003, 0.865003, 100.995986938477, 0.705882, 0.0156863, 0.14902]
 rH2mabovegroundLUT.ScalarRangeInitialized = 1.0
 
 # get opacity transfer function/opacity map for 'RH2maboveground'
 rH2mabovegroundPWF = GetOpacityTransferFunction('RH2maboveground')
-rH2mabovegroundPWF.Points = [17.933488845825195, 0.0, 0.5, 0.0, 100.995986938477, 1.0, 0.5, 0.0]
+rH2mabovegroundPWF.Points = [17.9334888458252, 0.0, 0.5, 0.0, 100.995986938477, 1.0, 0.5, 0.0]
 rH2mabovegroundPWF.ScalarRangeInitialized = 1
+
+# get color transfer function/color map for 'TMP2maboveground'
+tMP2mabovegroundLUT = GetColorTransferFunction('TMP2maboveground')
+tMP2mabovegroundLUT.RGBPoints = [258.464172363281, 1.0, 0.0, 1.0, 271.35830954042706, 0.666666666666667, 0.0, 1.0, 273.58996582031205, 0.0, 0.0, 0.498039215686275, 276.3175806474781, 0.0, 0.396078431372549, 0.886274509803922, 278.4252624511721, 0.43921568627451, 0.803921568627451, 1.0, 278.5492553710941, 0.36078431372549, 1.0, 0.756862745098039, 280.7809448242191, 0.0, 1.0, 0.0, 285.86419677734415, 1.0, 1.0, 0.0, 289.2117004394532, 1.0, 0.666666666666667, 0.0, 294.04699707031216, 1.0, 0.0, 0.0, 299.37823486328125, 0.666666666666667, 0.0, 0.0]
+tMP2mabovegroundLUT.ScalarRangeInitialized = 1.0
+
+# get opacity transfer function/opacity map for 'TMP2maboveground'
+tMP2mabovegroundPWF = GetOpacityTransferFunction('TMP2maboveground')
+tMP2mabovegroundPWF.Points = [258.464172363281, 1.0, 0.5, 0.0, 299.37823486328125, 1.0, 0.5, 0.0]
+tMP2mabovegroundPWF.ScalarRangeInitialized = 1
 
 # ----------------------------------------------------------------
 # setup the visualization in view 'renderView1'
 # ----------------------------------------------------------------
 
-# show data from calculator1
-calculator1Display = Show(calculator1, renderView1)
+# show data from meteonc
+meteoncDisplay = Show(meteonc, renderView1)
 # trace defaults for the display properties.
-calculator1Display.Representation = 'Slice'
-calculator1Display.ColorArrayName = ['POINTS', 'RH_2maboveground']
-calculator1Display.LookupTable = rH2mabovegroundLUT
-calculator1Display.ScalarOpacityUnitDistance = 0.194190573529865
+meteoncDisplay.Representation = 'Slice'
+meteoncDisplay.ColorArrayName = ['POINTS', 'TMP_2maboveground']
+meteoncDisplay.LookupTable = tMP2mabovegroundLUT
+meteoncDisplay.ScalarOpacityUnitDistance = 0.194190573529865
 
 # show color legend
-calculator1Display.SetScalarBarVisibility(renderView1, True)
-
-# show data from glyph1
-glyph1Display = Show(glyph1, renderView1)
-# trace defaults for the display properties.
-glyph1Display.ColorArrayName = ['POINTS', 'RH_2maboveground']
-glyph1Display.LookupTable = rH2mabovegroundLUT
-
-# show color legend
-glyph1Display.SetScalarBarVisibility(renderView1, True)
+meteoncDisplay.SetScalarBarVisibility(renderView1, True)
 
 # show data from contour1
 contour1Display = Show(contour1, renderView1)
 # trace defaults for the display properties.
+contour1Display.Representation = 'Points'
+contour1Display.AmbientColor = [0.0, 0.0, 0.0]
 contour1Display.ColorArrayName = [None, '']
 
 # show data from streamTracer1
@@ -119,8 +122,19 @@ streamTracer1Display.SetScalarBarVisibility(renderView1, True)
 
 # get color legend/bar for rH2mabovegroundLUT in view renderView1
 rH2mabovegroundLUTColorBar = GetScalarBar(rH2mabovegroundLUT, renderView1)
+rH2mabovegroundLUTColorBar.Position = [0.8963531499556343, 0.1017173051519156]
+rH2mabovegroundLUTColorBar.Position2 = [0.120000000000003, 0.4299999999999996]
 rH2mabovegroundLUTColorBar.Title = 'RH_2maboveground'
 rH2mabovegroundLUTColorBar.ComponentTitle = ''
+
+# get color legend/bar for tMP2mabovegroundLUT in view renderView1
+tMP2mabovegroundLUTColorBar = GetScalarBar(tMP2mabovegroundLUT, renderView1)
+tMP2mabovegroundLUTColorBar.Position = [0.8881543921916593, 0.5411360634081902]
+tMP2mabovegroundLUTColorBar.Position2 = [0.12000000000000055, 0.42999999999999994]
+tMP2mabovegroundLUTColorBar.Title = 'TMP_2maboveground'
+tMP2mabovegroundLUTColorBar.ComponentTitle = ''
+tMP2mabovegroundLUTColorBar.TitleColor = [0.0, 0.0, 0.0]
+tMP2mabovegroundLUTColorBar.LabelColor = [0.0, 0.0, 0.0]
 
 output = "images/" + sys.argv[2] + ".png"
 print("fichier sortie", output)
