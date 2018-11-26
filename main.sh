@@ -25,6 +25,9 @@ carte avec iso valurs, lignes de courant et temperature
 esac
 done
 
+TYPE_PACKAGE=$1
+TYPE_COURBE=$2
+
 # Parametre 1 : Type de format (ex : SP1)
 for i in {1..7}
 do
@@ -34,7 +37,7 @@ do
     rm *.nc > /dev/null 2>&1
 
     echo "Téléchargement carte $i"
-    python3 RequeteArome.py $((($i-1)*6 - 5)) $1 # intervalle de 6 heures entre chaque données.
+    python3 RequeteArome.py $((($i-1)*6 - 5)) $TYPE_PACKAGE # intervalle de 6 heures entre chaque données.
 
     NOM_FICHIER="$(ls *.grib2 | head -n1)" > /dev/null 2>&1
 
@@ -61,23 +64,21 @@ do
     ./wgrib2 $NOM_FICHIER -netcdf output.nc > /dev/null 2>&1
 
     # Process avec paraview
-    for j in "$@"
-    do
-    case $j in
+    echo "argument $TYPE_COURBE"
+    case $TYPE_COURBE in
         --iso)
+        echo "iso valeurs"
         pvpython process_data_iso.py output.nc $i > /dev/null 2>&1
-        break
         ;;
         --temp)
+        echo "temperature"
         pvpython process_data_temp.py output.nc $i > /dev/null 2>&1
-        break
         ;;
         *)
+        echo "default"
         pvpython process_data.py output.nc $i > /dev/null 2>&1
-        break
         ;;
     esac
-    done
 
 
 done
