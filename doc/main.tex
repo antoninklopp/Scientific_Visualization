@@ -13,6 +13,7 @@
 \usepackage{a4wide}
 \usepackage{lipsum}
 \usepackage{graphicx}
+\usepackage{textcomp}
 \graphicspath{{images/}} % emplacement des images
 \usepackage{subfig}
  \usepackage{float}
@@ -49,13 +50,13 @@ urlcolor=black}
 
 \renewcommand{\baselinestretch}{1.05}
 \usepackage{fancyhdr}
-\pagestyle{fancy}
-\renewcommand{\sectionmark}[1]{\markboth{\thesection .\ #1}{}}
-\renewcommand{\subsectionmark}[1]{\markright{\thesubsection .\ #1}}
-\fancyhead{}
-\fancyhead[RE]{\nouppercase{\leftmark}}
-\fancyhead[LO]{\nouppercase{\rightmark}}
-\renewcommand{\headrulewidth}{0pt}
+% \pagestyle{fancy}
+% \renewcommand{\sectionmark}[1]{\markboth{\thesection .\ #1}{}}
+% \renewcommand{\subsectionmark}[1]{\markright{\thesubsection .\ #1}}
+% \fancyhead{}
+% \fancyhead[RE]{\nouppercase{\leftmark}}
+% \fancyhead[LO]{\nouppercase{\rightmark}}
+% \renewcommand{\headrulewidth}{0pt}
 
 \let\headruleORIG\headrule
 \renewcommand{\headrule}{\color{black} \headruleORIG}
@@ -63,11 +64,11 @@ urlcolor=black}
 \usepackage{colortbl}
 \arrayrulecolor{black}
 
-\fancypagestyle{plain}{
-  \fancyhead{}
-  \fancyfoot[C]{\thepage}
-  \renewcommand{\headrulewidth}{0pt}
-}
+% \fancypagestyle{plain}{
+%   \fancyhead{}
+%   \fancyfoot[C]{\thepage}
+%   \renewcommand{\headrulewidth}{0pt}
+% }
 
 \makeatletter
 \def\@textbottom{\vskip \z@ \@plus 1pt}
@@ -239,31 +240,34 @@ urlcolor=black}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{empty-image}
-  \caption{Image avec courbe iso-valeur, champs des températures et lignes de courant}
+  \includegraphics[width=0.7\textwidth]{1}
+  \caption{Courbe iso-valeur, champs des températures et lignes de courant (SP1)}
 \end{figure}
+\vspace{-5mm}
+
+Cette carte montre les températures sur la zone Europe, une courbe iso-valeur (en noire) et les lignes de
+courant (en blanc) dans une direction particulière. Le choix des couleurs pour les températures est basé sur l'échelle de couleurs utilisée par MétéoFrance.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{empty-image}
-  \caption{Plusieurs courbes iso-valeurs}
+  \includegraphics[width=0.7\textwidth]{2}
+  \caption{Plusieurs courbes iso-valeurs (SP1)}
 \end{figure}
+\vspace{-5mm}
+
+On affiche pour cette animation plusieurs courbes iso-valeurs, de façon à visualiser quelques zones de températures de 265\textdegree K ($\approx -8.15$\textdegree C) à 290 \textdegree K  ($\approx 16.85$\textdegree C) par pas de 5\textdegree K.
 
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{empty-image}
-  \caption{Plusieurs champs de températures}
+  \includegraphics[width=0.7\textwidth]{3}
+  \caption{Plusieurs champs de températures (SP1)}
 \end{figure}
+\vspace{-5mm}
 
-% \begin{figure}[H]
-%   \includegraphics[width=0.4\textwidth]{ensimag_logo}\hfill
-%   \includegraphics[width=0.4\textwidth]{ensimag_logo}
-%   \subfloat[\label{fig:ref1} une légende]{\hspace{.5\linewidth}}
-%   \subfloat[\label{fig:ref2} une autre]{\hspace{.5\linewidth}}
-%   \caption{légende globale}
-%   \label{fig:ref}
-% \end{figure}
+Cette troisième animation permet de visualiser l'évolution des températures sur 6 heures. Les températures (à la date du 26 novembre 2018) vont de 271.358\textdegree K ($\approx -2.15$\textdegree C) en violet à 294\textdegree K ($\approx 20.85$\textdegree C) en orange-rouge. Sur l'animation lancée, on observe que les températures les plus chaudes sont localisées principalement en Europe méditerranénne, comme sur les carte des iso-valeurs.
+
+
 
 
 
