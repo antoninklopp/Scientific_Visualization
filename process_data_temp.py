@@ -97,9 +97,6 @@ meteoncDisplay.ColorArrayName = ['POINTS', 'TMP_2maboveground']
 meteoncDisplay.LookupTable = tMP2mabovegroundLUT
 meteoncDisplay.ScalarOpacityUnitDistance = 0.194190573529865
 
-# show color legend
-meteoncDisplay.SetScalarBarVisibility(renderView1, True)
-
 # setup the color legend parameters for each legend in this view
 
 output = "images/" + sys.argv[2] + ".png"
