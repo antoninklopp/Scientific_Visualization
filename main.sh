@@ -64,18 +64,14 @@ do
     ./wgrib2 $NOM_FICHIER -netcdf output.nc > /dev/null 2>&1
 
     # Process avec paraview
-    echo "argument $TYPE_COURBE"
     case $TYPE_COURBE in
         --iso)
-        echo "iso valeurs"
         pvpython process_data_iso.py output.nc $i > /dev/null 2>&1
         ;;
         --temp)
-        echo "temperature"
         pvpython process_data_temp.py output.nc $i > /dev/null 2>&1
         ;;
         *)
-        echo "default"
         pvpython process_data.py output.nc $i > /dev/null 2>&1
         ;;
     esac

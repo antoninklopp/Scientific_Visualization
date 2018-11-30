@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="1">
+        <GroundOverlay id="2">
+            <name>Europe 0</name>
+            <TimeSpan id="5">
+                <begin>2018-11-30T15:00:16</begin>
+                <end>2018-11-30T20:00:16</end>
+            </TimeSpan>
+            <Icon id="3">
+                <href>images/1.png</href>
+            </Icon>
+            <LatLonBox>
+                <north>55.4</north>
+                <south>37.5</south>
+                <east>16</east>
+                <west>-12</west>
+            </LatLonBox>
+        </GroundOverlay>
+        <GroundOverlay id="6">
+            <name>Europe 1</name>
+            <TimeSpan id="9">
+                <begin>2018-11-30T21:00:16</begin>
+                <end>2018-12-01T02:00:16</end>
+            </TimeSpan>
+            <Icon id="7">
+                <href>images/2.png</href>
+            </Icon>
+            <LatLonBox>
+                <north>55.4</north>
+                <south>37.5</south>
+                <east>16</east>
+                <west>-12</west>
+            </LatLonBox>
+        </GroundOverlay>
+        <GroundOverlay id="10">
+            <name>Europe 2</name>
+            <TimeSpan id="13">
+                <begin>2018-12-01T03:00:16</begin>
+                <end>2018-12-01T08:00:16</end>
+            </TimeSpan>
+            <Icon id="11">
+                <href>images/3.png</href>
+            </Icon>
+            <LatLonBox>
+                <north>55.4</north>
+                <south>37.5</south>
+                <east>16</east>
+                <west>-12</west>
+            </LatLonBox>
+        </GroundOverlay>
+        <GroundOverlay id="14">
+            <name>Europe 3</name>
+            <TimeSpan id="17">
+                <begin>2018-12-01T09:00:16</begin>
+                <end>2018-12-01T14:00:16</end>
+            </TimeSpan>
+            <Icon id="15">
+                <href>images/4.png</href>
+            </Icon>
+            <LatLonBox>
+                <north>55.4</north>
+                <south>37.5</south>
+                <east>16</east>
+                <west>-12</west>
+            </LatLonBox>
+        </GroundOverlay>
+        <GroundOverlay id="18">
+            <name>Europe 4</name>
+            <TimeSpan id="21">
+                <begin>2018-12-01T15:00:16</begin>
+                <end>2018-12-01T20:00:16</end>
+            </TimeSpan>
+            <Icon id="19">
+                <href>images/5.png</href>
+            </Icon>
+            <LatLonBox>
+                <north>55.4</north>
+                <south>37.5</south>
+                <east>16</east>
+                <west>-12</west>
+            </LatLonBox>
+        </GroundOverlay>
+        <GroundOverlay id="22">
+            <name>Europe 5</name>
+            <TimeSpan id="25">
+                <begin>2018-12-01T21:00:16</begin>
+                <end>2018-12-02T02:00:16</end>
+            </TimeSpan>
+            <Icon id="23">
+                <href>images/6.png</href>
+            </Icon>
+            <LatLonBox>
+                <north>55.4</north>
+                <south>37.5</south>
+                <east>16</east>
+                <west>-12</west>
+            </LatLonBox>
+        </GroundOverlay>
+    </Document>
+</kml>
