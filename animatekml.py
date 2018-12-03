@@ -31,4 +31,4 @@ for i, image in enumerate(sorted(glob.glob("images/*.png"))):
 
 # ...and so on with the other months
 
-kml.save("TimeSpan.kml")
+kml.save("meteo.kml")

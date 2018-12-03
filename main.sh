@@ -1,23 +1,55 @@
 #!/bin/sh
 
-#Enlever tous les anciens fichiers image
-rm images/*.png > /dev/null 2>&1
-
-for i in "$@"
-do
-case $i in
-    -h|--help)
+print_help() {
     echo "Visualisation scientifique
 
-Lancer ./main.sh argument
+Lancer ./main.sh
 
 --default (ou sans argument) : visualisation de la
 carte avec iso valurs, lignes de courant et temperature
 
 --iso : visualisation des lignes iso valeurs de temperature
 
---temp : visualisation de la température seule"
+--temp : visualisation de la température seule
+
+--max_intervalles=n : Si on ne veut que n intervalles de temps (default : max : 7)
+
+--package=package : Changer le package (default sp1)
+"
+}
+
+#Enlever tous les anciens fichiers image
+mkdir images > /dev/null 2>&1
+rm images/*.png > /dev/null 2>&1
+
+TYPE_COURBE="--default"
+TYPE_PACKAGE="IP1"
+MAX_INTERVALLES=7
+
+for i in "$@"
+do
+case $i in
+    -h|--help)
+    print_help
     exit
+    ;;
+    --max_intervalles=*|-m=*)
+        MAX_INTERVALLES="${i#*=}"
+        shift
+    ;;
+    --package=*|-p=*)
+        TYPE_PACKAGE="${i#*=}"
+        shift
+    ;;
+    --iso)
+        TYPE_COURBE="--iso"
+        echo "Carte des iso valeurs"
+        shift
+    ;;
+    --temp)
+        TYPE_COURBE="--temp"
+        echo "Carte des temperatures"
+        shift
     ;;
     *)
           # unknown option
@@ -25,11 +57,8 @@ carte avec iso valurs, lignes de courant et temperature
 esac
 done
 
-TYPE_PACKAGE=$1
-TYPE_COURBE=$2
-
 # Parametre 1 : Type de format (ex : SP1)
-for i in {1..7}
+for (( i=1; i<=$MAX_INTERVALLES; i++ ))
 do
     rm *.grib2 > /dev/null 2>&1
 
@@ -53,10 +82,9 @@ do
       # Enlever les anciens output files
       rm *.nc > /dev/null 2>&1
 
-      echo $((($i-1)*6 - 5))
       python3 RequeteArome.py $((($i-1)*6 - 5)) $1 > /dev/null 2>&1 # intervalle de 6 heures entre chaque données.
 
-      NOM_FICHIER="$(ls *.grib2 | head -n1)"
+      NOM_FICHIER="$(ls *.grib2 | head -n1)" > /dev/null 2>&1
 
   done
 
@@ -71,7 +99,7 @@ do
         --temp)
         pvpython process_data_temp.py output.nc $i > /dev/null 2>&1
         ;;
-        *)
+        --default)
         pvpython process_data.py output.nc $i > /dev/null 2>&1
         ;;
     esac
@@ -79,7 +107,9 @@ do
 
 done
 
+# Création du fichier KML
 python3 animatekml.py
 
-# Ouverture dans google earth
-google-earth TimeSpan.kml
+# On ne peut pas charger de fichier depuis la ligne de commande.
+# On propose donc à l'utilisateur d'ouvrir le fichier à la main.
+echo "Vous pouvez maintenant ouvrir le fichier meteo.kml"
