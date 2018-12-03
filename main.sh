@@ -23,7 +23,7 @@ mkdir images > /dev/null 2>&1
 rm images/*.png > /dev/null 2>&1
 
 TYPE_COURBE="--default"
-TYPE_PACKAGE="IP1"
+TYPE_PACKAGE="SP1"
 MAX_INTERVALLES=7
 
 for i in "$@"
